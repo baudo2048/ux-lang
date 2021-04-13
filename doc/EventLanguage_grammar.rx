@@ -1,0 +1,27 @@
+eventName [+]
+    (sock/disp/rest/json) eventName/serviceName
+    ...
+
+Example 1:
+
+componente1.clicked
+    send requestToServerEventName  // used to call a function on server 
+
+responseFromServerEventName
+    disp componente1.updateContent  // used to dispatch local handlers 
+
+
+Example 2:
+
+eventA
+    send request
+    disp eventB
+
+
+messageGot +                          // + (plus) plus sign means that the event represents an avent from a Socket
+    disp componente1.update
+    disp componente2.update
+
+
+
+NB // comment line are not allowed by the compiler

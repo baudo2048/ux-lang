@@ -1,0 +1,8 @@
+// Global State
+
+windows..
+    window 1 open x y z
+    window 2 close
+
+activeWindow
+

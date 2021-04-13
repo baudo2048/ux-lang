@@ -1,0 +1,40 @@
+import ./includes/includeFile.sx
+
+varName
+    border 1px solid black
+    display grid
+    gridTemplateColumns 1fr 1fr 1fr
+ ||
+ ||
+ ||
+.varName {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns 1fr 1fr 1fr;
+}
+
+stepper1Root
+    color green
+
+stepperBox
+    width 50px
+    height 20px
+    borderRadius 20px
+    backgroundColor blue
+    border 1px solid black
+
+stepperBox:hover
+    stepper1Root
+    varName
+    bla bla bla
+
+tableBase
+
+-table
+    tableBase
+
+-tr
+
+thBase
+
+tdBase

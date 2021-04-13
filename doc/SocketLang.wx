@@ -1,0 +1,11 @@
++compile
+
++fileUxRequest 
+    fileName foo bar
+
+-fileUxResponse
+    acc1.panelPrj.innerHTML = ''
+    fileUxResponse.each((v,i,a)=>{
+        acc1.panelPrj.append()
+    })
+

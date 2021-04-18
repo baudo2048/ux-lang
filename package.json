@@ -2,6 +2,10 @@
   "name": "ux-lang",
   "version": "1.1.0",
   "description": "ux language core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baudo2048/ux-lang.git"
+  },
   "main": "index.js",
   "directories": {
     "doc": "doc"

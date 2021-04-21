@@ -38,7 +38,7 @@ function leadingTabs(n){
 	return lt
 }
 
-function writeAttribute(tokens, arrOut, currentVarName, namespace){
+function writeAttribute_old(tokens, arrOut, currentVarName, namespace){
     var value = tokens[1]
     tokens.slice(2).forEach(v=>{
         value = value + " " + v
@@ -52,6 +52,19 @@ function writeAttribute(tokens, arrOut, currentVarName, namespace){
         } else {
             arrOut.push(`${currentVarName}.setAttribute('${tokens[0].slice(1)}', '${value}')`)
         }
+    }
+}
+
+function writeAttribute(tokens, arrOut, currentVarName, namespace){
+    var value = tokens[1]
+    tokens.slice(2).forEach(v=>{
+        value = value + " " + v
+    })
+    
+    if(tokens[0].substr(1,2)=="on"){
+        arrOut.push(`${currentVarName}${tokens[0]} = ${value}`)
+    } else {
+        arrOut.push(`${currentVarName}.setAttribute('${tokens[0].slice(1)}', '${value}')`)
     }
 }
 

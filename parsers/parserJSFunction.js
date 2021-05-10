@@ -295,6 +295,7 @@ module.exports = function parse(fileName, textCode, scriptCode='', cssCode='') {
     })
 
     // SCRIVO LE COSE DI CHIUSURA
+    codeArr.push(`$firsElement.setAttribute('ux-comp-name','${fileName}')`)
     codeArr.push(`return ${firstElement}`)
     codeArr.push('}')
 

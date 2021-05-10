@@ -21,3 +21,24 @@ const functionCode = parserJSFunction('functionName', uxContent)
 // functionCode contains the javascript code which execution gives the html representend by uxContent.
 ```
 
+So *functionCode* contains:  
+```
+function functionName(){
+    var root = document.createElement('div')
+    var varName_01 = document.createElement('h1')
+    varName_01.textContent = 'Hello World'
+    root.appendChild(varName_01)
+    return root
+}
+```
+
+# TODO
+
+- Create a reusable bundle from application (so I can use app as it would be a component). DONE - see bundler-js command in ux-cli
+- ux-ui-dev-tools
+- save components on heroku+mongo
+- download styled dom
+- dev server (to save styled dom)
+- Components hierarchy (folderization)
+- Distinct between comp.js(add functionalities) and comp.wire.js
+- add ux-comp-name attribute to parsers

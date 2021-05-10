@@ -1,4 +1,4 @@
-/*! ux-lang 1.2.1 https://github.com/baudo2048/ux-lang.git @license MIT */
+/*! ux-lang 1.3.0 https://github.com/baudo2048/ux-lang.git @license MIT */
 (function(global, factory) {
   typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define(factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, 
   global.ux = factory());
@@ -466,7 +466,8 @@
       }
     }));
     // SCRIVO LE COSE DI CHIUSURA
-        codeArr.push(`return ${firstElement}`);
+        codeArr.push(`$firsElement.setAttribute('ux-comp-name','${fileName}')`);
+    codeArr.push(`return ${firstElement}`);
     codeArr.push("}");
     // SALVO STAMPA... FINITO
         var outCode = "";

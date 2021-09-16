@@ -1,0 +1,103 @@
+# Binding language
+
+// IN UX FILE
+div root 'Hello $name
+
+// 1° Problema, distinzione tra textContent e template
+
+$name = new rxjs.BehaviorSubject()
+$name.subscribe(next => {
+	root.textContent = 
+})
+
+// CASES
+div root 'Hello $name    	// Y
+div $name 'Hello Bob	 	// ?
+$name root 'Hello Bob		// Y
+
+div root
+	-$name green			// ?
+	-color $name			// Y
+	.$name ./hi.png			// ?
+	.src $name				// Y
+	
+#$name root					// ?
+
+div varName_$i				// ?
+
+// MULTIPLE TIMES
+div root
+	-color $green
+	-bg $green
+
+
+// IN JS FILE
+$name = 3 become:
+$name.next(3)
+
+
+// UL SAMPLE
+ul ulVar
+	%for users
+		li user_$i '$users[$i].subObj.subSubObj == $users[$i].subObj.subSubObj
+			img 
+				.src $gravatar
+	li 'out of forEach
+	
+ul ulVar
+	%for users
+		li '$users[i].name - $users[i].surname
+	li 'out of forEach
+
+// il for cosa diventa?
+c'è un blocco sotto una variabile array
+ulVar = document.createElement('ul')  --> currentVar
+
+// 1 controllo se array oppure oggetto
+
+// 2 controllo se ci sono elementi o se è vuoto
+
+// 3 ciclo 
+for(let i=0;i<users.length;i++){
+	var liVar = document.createElement('li')
+	liVar.textContent = '$users[i]'
+	ulVar.appendChild(liVar)
+}
+// ci vuole il virtual dom o qualche trick per tenere in agg
+bindDomWithVar(domVar, jsVar)
+
+ul
+	%for int i=0;i<users.length;i++
+	{
+		li '@users[]
+	}
+
+img
+	%if n==3
+		li
+			-color green
+			.src 3	
+	%if n!=3
+		li
+			-color red
+			.src none
+
+
+// NESTED PROBLEMS
+
+ul
+	%for users
+		%for @.addresses
+			li 'Mannaggia @ (this is an address)
+
+// KEYWORD LIST
+%for
+%if
+%else
+%or a.name 'default'
+%if
+%functionName 
+%userDefinedFunction
+% javascript block?
+
+	

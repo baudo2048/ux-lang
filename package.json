@@ -13,7 +13,8 @@
   "files": [
     "index.js",
     "dist/",
-    "doc/"
+    "doc/",
+    "parsers/"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,5 +30,8 @@
     "rollup": "^2.46.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "jsdom": "^16.5.3"
   }
 }

@@ -1,0 +1,17 @@
+users []
+    user
+        mail                identifica univocamente un utente       
+        name
+        accessToken
+        expireTime
+        credit
+        imgProfile
+
+apps []
+    app
+        name                name+mail sono la chiave primaria
+        user                mail
+        creationTime
+        description 
+        lastUpdate          
+

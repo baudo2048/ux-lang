@@ -42,3 +42,7 @@ function functionName(){
 - Components hierarchy (folderization)
 - Distinct between comp.js(add functionalities) and comp.wire.js
 - add ux-comp-name attribute to parsers
+- riconsiderare document.register per determinati casi d'uso con uso dello store as centralized controller
+- mustache template engine like
+- implementare ux.config.json
+- style tag support in ux file

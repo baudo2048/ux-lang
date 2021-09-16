@@ -1,0 +1,32 @@
+{
+    "node":{
+        "type":["TAG","ATTR","STYLE","%FOR","%IF","%ELSE"],
+        "parent": "",
+        "contextVarName":"div_03",
+        "children":[],
+        "varName":"",
+        "textNode":"",
+        "isFirstNode":true,
+        "isLastNode":true
+    },
+
+    "TAG":{
+        "name": "div"
+
+    },
+
+    "%FOR":{
+        "collection":"array",
+        "elementPlaceholder":"el",
+        "indexPlaceholder":"i",
+        "arrayPlaceholder":"arr",
+        "children":[]
+    },
+
+    "%IF":{
+        "condition":"a==0",
+        "ifChildren":[],
+        "elseChildren":[]
+    }
+}
+

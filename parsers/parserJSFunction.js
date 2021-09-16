@@ -14,6 +14,8 @@ function getTokenType(t){  // t = string
 		return "include"
     if (sentinel == "<")
         return "html"
+    if (sentinel == "#")
+        return "shadow"
 	return "elem"
 }
 
@@ -128,6 +130,7 @@ module.exports = function parse(fileName, textCode, scriptCode='', cssCode='') {
 	var currTabNum = 0
 	var prevTabNum = 0
 	var isFirstElement = true
+    var isShadow = false
     var firstElement = ''
     Lines.forEach( (v,i,a) => {
         var tokens = (v.trim()).split(' ')
@@ -140,7 +143,14 @@ module.exports = function parse(fileName, textCode, scriptCode='', cssCode='') {
 
         currTabNum = countTabs(v)
 
-        if(tokenType == "elem"){
+        if(tokenType == "elem" || tokenType=="shadow"){
+            if(tokenType=="shadow"){
+                isShadow=true;
+                leadToken = leadToken.slice(1)
+                tokens[0] = tokens[0].slice(1)
+                //console.log(`isShadow ${leadToken}`)
+            }
+
             if(tokens.length == 1){
                 if(isImport(leadToken)){
                     varName = leadToken.slice(1) + "_" + count
@@ -282,20 +292,33 @@ module.exports = function parse(fileName, textCode, scriptCode='', cssCode='') {
 
 
     // AGGIUNGO IL CSS CODE
-    var cssLines = cssCode.split('\n')
-    cssLines.forEach(v => {
-        var temp = v.trim()
-        temp = temp.split(' ')
-        if(temp[0]=='import'){
-            importArr.push(v)
-        }else {
-            codeArr.push(v)
-        }
+    // var cssLines = cssCode.split('\n')
+    // cssLines.forEach(v => {
+    //     var temp = v.trim()
+    //     temp = temp.split(' ')
+    //     if(temp[0]=='import'){
+    //         importArr.push(v)
+    //     }else {
+    //         codeArr.push(v)
+    //     }
         
-    })
+    // })
 
     // SCRIVO LE COSE DI CHIUSURA
-    codeArr.push(`$firsElement.setAttribute('ux-comp-name','${fileName}')`)
+    codeArr.push(`${firstElement}.setAttribute('ux-comp-name','${fileName}')`)
+
+    codeArr.push(`let style = document.createElement('style')`)
+    codeArr.push(`style.setAttribute('ux-comp-name-css','${fileName}')`)
+    codeArr.push('style.textContent = `'+cssCode+'`')
+
+    if(isShadow){
+        codeArr.push(`${firstElement}.attachShadow({mode:'open'})`)
+        codeArr.push(`Array.from(${firstElement}.childNodes).forEach((e)=>{${firstElement}.shadowRoot.appendChild(e)});`)
+        codeArr.push(`${firstElement}.shadowRoot.appendChild(style)`)
+    } else {
+        codeArr.push(`${firstElement}.appendChild(style)`)
+    }
+
     codeArr.push(`return ${firstElement}`)
     codeArr.push('}')
 

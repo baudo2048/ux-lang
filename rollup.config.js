@@ -9,6 +9,24 @@ export default {
   input: 'index.js',
   output: [
     {
+      file: 'dist/ux-lang.js',
+      format: 'iife',
+      name: 'ux',
+      plugins: [
+        // Here terser is used only to force ascii output
+        terser({
+          mangle: false,
+          compress: false,
+          format: {
+            comments: 'all',
+            beautify: true,
+            ascii_only: true,
+            indent_level: 2
+          }
+        })
+      ]
+    },
+    {
       file: 'dist/ux-lang.min.js',
       format: 'iife',
       name: 'ux',
